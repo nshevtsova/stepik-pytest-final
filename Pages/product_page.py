@@ -10,7 +10,6 @@ class ProductPage(BasePage):
     def add_to_basket(self):
         button = self.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         button.click()
-        self.solve_quiz_and_get_code()
 
     def should_be_add_to_basket_success_message(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_ADDED_TO_BASKET_SUCCESS_MESSAGE), "Success message is not presented"
