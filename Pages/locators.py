@@ -1,5 +1,12 @@
 from selenium.webdriver.common.by import By
 
+class UsedUrls():
+    MAIN_URL = "http://selenium1py.pythonanywhere.com/"
+    LOGIN_URL = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+    PRODUCT_THE_CITY_AND_THE_STARS_95_URL = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the" \
+                                            "-stars_95/ "
+
+
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
