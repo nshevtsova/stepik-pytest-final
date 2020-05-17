@@ -97,7 +97,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
 
 
 @pytest.mark.add_to_basket_user
-class TestUserAddToBasketFromProductPage():
+class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         link = UsedUrls.LOGIN_URL

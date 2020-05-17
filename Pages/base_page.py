@@ -1,39 +1,35 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoAlertPresentException # в начале файла
-import math
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
+import math
 
 
-class BasePage():
+class BasePage:
 
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
-        
+
     def open(self):
         self.browser.get(self.url)
-        
+
+    def find_element(self, how, what):
+        return self.browser.find_element(how, what)
+
     def is_element_present(self, how, what):
         try:
-            self.browser.find_element(how, what)
+            self.find_element(how, what)
         except NoSuchElementException:
             return False
         return True
 
-    def find_element(self, how, what):
-        try:
-            element = self.browser.find_element(how, what)
-        except NoSuchElementException:
-            return None
-        return element
-
     def get_element_text(self, how, what):
         try:
-            element = self.browser.find_element(how, what)
+            element = self.find_element(how, what)
             text = element.text
         except NoSuchElementException:
             return None
@@ -69,14 +65,14 @@ class BasePage():
         return True
 
     def go_to_login_page(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link = self.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
     def go_to_basket(self):
-        link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        link = self.find_element(*BasePageLocators.BASKET_LINK)
         link.click()
 
     def should_be_authorized_user(self):
